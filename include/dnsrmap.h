@@ -16,7 +16,7 @@ class DnsAddrEntry
 {
 public:
   virtual std::string getName() const =0;
-  virtual std::string getPath()=0;
+  virtual std::string getPath()=0;	// domain||cname1||cname2  - can be empty
   virtual bool        isV6()=0;
   virtual in_addr     getAddr4()=0;
   virtual in6_addr    getAddr6()=0;
@@ -45,8 +45,9 @@ public:
   virtual int getNumEntriesV4()=0;
   virtual int getNumEntriesV6()=0;
 
-  // cleanup
+  // remove all entries - only public for testing
   virtual void clear()=0;
+  // only public for testing - called internally in add()
   virtual void CheckCleanup(time_t now)=0;
 };
 
